@@ -30,9 +30,9 @@ router.get('/diagnosis', function (req, res) {
 });
 
 router.post('/questionnaire', function (req, res) {
-    var questions = req.body.questions;
-    console.log("are are posting shit");
-
+    var questions = req.body;
+    console.log("are are posting shit, here is the questions: " +JSON.stringify(questions));
+    console.log(req.body);
     res.send(questions);
 
 });

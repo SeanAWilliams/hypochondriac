@@ -1,7 +1,44 @@
 extends layout
 
+mixin questionText(name, value, id)
+    key=name
+    input(type="text", name=name, value=value, Id=id)
+    br
+
+mixin questionCheckbox(name, value, id)
+    key=name
+    input(type="checkbox", name=name, checked=value, Id=id)
+    br
+
+mixin submit(name, value, id)
+    input(type="submit" name=name, value=value, Id=id)
+
 block content
     h1= title
     p Welcome to #{title}
     br
-    p This page is a work in progress...
+    form(name="input")
+        mixin questionCheckbox("question 1 ", null, 1)
+        mixin questionCheckbox("question 2 ", null, 2)
+        mixin questionCheckbox("question 3 ", null, 3)
+        mixin submit("do", "submit", "submit")
+
+    //TODO break this out to a standalone JS script
+    script.
+        $('#submit').click(function() {
+
+            var questions = {
+                1: $('#1').is(":checked"),
+                2: $('#2').is(":checked"),
+                3: $('#3').is(":checked")
+            }
+            $.post('api/questionnaire', {questions: questions}, function(data){
+                displayAlert(data);
+            });
+
+            function displayAlert(data){
+                alert(JSON.stringify(data));
+            }
+
+        });
+

@@ -50,7 +50,7 @@ Response format:
 {
 	"diagnosis": { "name": "megacancer" },
 	"prognosis": {
-		["Anal chemotherapy", "orphan tears", "coffee enema"],
+		["Anal chemotherapy", "orphan tears", "coffee enema"]
 	},
 	"lifespan": "about 5 minutes"
 
@@ -75,13 +75,4 @@ Pull stuff from the CDC API: https://tools.cdc.gov/syndication/api.aspx
 when TH user first accesses the site, they are greeted with a question, followed by N (probably 2) more questions after they answer.
 
 
-router.get('/names/:name', function(req, res){
-    var vcenterName = req.params.name;
-    mongoDb.connect(function (databaseConnection) {
-        databaseConnection.collection('vcenters', function (error, collection) {
-            collection.find({name: vcenterName}).sort({$natural:1}).limit(mongoDb.max_records).toArray(function (error, results) {
-                res.send(model.mapVcenterData(results));
-            });
-        });
-    });
-});
+
