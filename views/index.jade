@@ -33,10 +33,26 @@ block content
                 q2: $('#2').is(":checked"),
                 q3: $('#3').is(":checked")
             };
+            console.log(questions);
+            /*
+            $.ajax({
+                url: "api/questionnaire",
+                type: 'post',
+                dataType: 'json',
+                data: questions,
+                contentType: 'application/json',
+                success: function (data) {
+                    alert("success");
+                    alert(data);
+                }
+            });
+            */
+
 
             $.post('api/questionnaire', questions, function(data){
                 displayAlert(data);
-            });
+            }, "json");
+
 
             function displayAlert(data){
                 alert("Data gotten back " + JSON.stringify(data)+ "\nData sent " + JSON.stringify(questions));
