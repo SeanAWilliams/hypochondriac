@@ -10,35 +10,36 @@ mixin questionCheckbox(name, value, id)
     input(type="checkbox", name=name, checked=value, Id=id)
     br
 
-mixin submit(name, value, id)
-    input(type="submit" name=name, value=value, Id=id)
+mixin submit(name, id)
+    button(name=name, value=value, Id=id)
+        | #{name}
 
 block content
     h1= title
     p Welcome to #{title}
     br
-    form(name="input")
+    p
         mixin questionCheckbox("question 1 ", null, 1)
         mixin questionCheckbox("question 2 ", null, 2)
         mixin questionCheckbox("question 3 ", null, 3)
-        mixin submit("do", "submit", "submit")
+        mixin submit("Submit", "submit")
 
     //TODO break this out to a standalone JS script
     script.
         $('#submit').click(function() {
 
             var questions = {
-                1: $('#1').is(":checked"),
-                2: $('#2').is(":checked"),
-                3: $('#3').is(":checked")
-            }
-            $.post('api/questionnaire', {questions: questions}, function(data){
+                q1: $('#1').is(":checked"),
+                q2: $('#2').is(":checked"),
+                q3: $('#3').is(":checked")
+            };
+
+            $.post('api/questionnaire', questions, function(data){
                 displayAlert(data);
             });
 
             function displayAlert(data){
-                alert(JSON.stringify(data));
+                alert("Data gotten back " + JSON.stringify(data)+ "\nData sent " + JSON.stringify(questions));
             }
-
         });
 

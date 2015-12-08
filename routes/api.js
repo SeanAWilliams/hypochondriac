@@ -30,14 +30,23 @@ router.get('/diagnosis', function (req, res) {
 });
 
 router.post('/questionnaire', function (req, res) {
+
+    var disease = new model.diseaseSchema();
+    disease.name = "death";
+    disease.timeToLive = "none";
+
     var questions = req.body;
-    console.log("are are posting shit, here is the questions: " +JSON.stringify(questions));
+    console.log("are are posting shit, here is the questions: " + JSON.stringify(questions));
     console.log(req.body);
-    res.send(questions);
+    console.log(questions.q1);
+    if (questions.q1 == "true")
+        res.send(disease);
+    else
+        res.send(questions);
 
 });
 
-router.get('/diagnosis/:name', function(req, res) {
+router.get('/diagnosis/:name', function (req, res) {
     var diseaseName = req.params.name;
     console.log("we got variable with name " + diseaseName);
     //TODO: change this to actually return info about the disease based on name

@@ -1,18 +1,18 @@
-<!DOCTYPE html><html><head><title></title><link rel="stylesheet" href="/stylesheets/style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css"><link href="/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/stylesheets/bootstrap-sortable.css" rel="stylesheet" type="text/css"><link href="/stylesheets/jquery.dataTables.min.css" rel="stylesheet" type="text/css"><link href="/stylesheets/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css"><link href="/stylesheets/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="/stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="/stylesheets/dashboard.css" rel="stylesheet" type="text/css"><link href="/stylesheets/simple-sidebar.css" rel="stylesheet" type="text/css"><link href="/stylesheets/bootstrap.vertical-tabs.css" rel="stylesheet" type="text/css"><script src="/javascripts/konami.js" type="text/javascript"></script><script src="/javascripts/jquery.js" type="text/javascript"></script><script src="/javascripts/scrollspy.js" type="text/javascript"></script><script src="/javascripts/transition.js" type="text/javascript"></script><script src="/javascripts/jquery-ui.min.js" type="text/javascript"></script><script src="/javascripts/bootstrap.js" type="text/javascript"></script><script src="/javascripts/bootstrap-sortable.js" type="text/javascript"></script><script src="/javascripts/jquery.dataTables.min.js" type="text/javascript"></script><script src="/javascripts/odometer.js" type="text/javascript"></script><script src="/javascripts/datatables.js" type="text/javascript"></script><body><h1></h1><p>Welcome to </p><br><form name="input"><key>question 1 </key><input type="checkbox" name="question 1 " Id="1"/><br/><key>question 2 </key><input type="checkbox" name="question 2 " Id="2"/><br/><key>question 3 </key><input type="checkbox" name="question 3 " Id="3"/><br/><input type="submit" name="do" value="submit" Id="submit"/></form><!--TODO break this out to a standalone JS script--><script>$('#submit').click(function() {
+<!DOCTYPE html><html><head><title></title><link rel="stylesheet" href="/stylesheets/style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css"><link href="/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/stylesheets/bootstrap-sortable.css" rel="stylesheet" type="text/css"><link href="/stylesheets/jquery.dataTables.min.css" rel="stylesheet" type="text/css"><link href="/stylesheets/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css"><link href="/stylesheets/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="/stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="/stylesheets/simple-sidebar.css" rel="stylesheet" type="text/css"><link href="/stylesheets/bootstrap.vertical-tabs.css" rel="stylesheet" type="text/css"><script src="/javascripts/konami.js" type="text/javascript"></script><script src="/javascripts/jquery.js" type="text/javascript"></script><script src="/javascripts/scrollspy.js" type="text/javascript"></script><script src="/javascripts/transition.js" type="text/javascript"></script><script src="/javascripts/jquery-ui.min.js" type="text/javascript"></script><script src="/javascripts/bootstrap.js" type="text/javascript"></script><script src="/javascripts/bootstrap-sortable.js" type="text/javascript"></script><script src="/javascripts/jquery.dataTables.min.js" type="text/javascript"></script><script src="/javascripts/odometer.js" type="text/javascript"></script><script src="/javascripts/datatables.js" type="text/javascript"></script><body><h1></h1><p>Welcome to </p><br><p><key>question 1 </key><input type="checkbox" name="question 1 " Id="1"/><br/><key>question 2 </key><input type="checkbox" name="question 2 " Id="2"/><br/><key>question 3 </key><input type="checkbox" name="question 3 " Id="3"/><br/><button name="Submit" Id="submit">Submit</button></p><!--TODO break this out to a standalone JS script--><script>$('#submit').click(function() {
 
     var questions = {
-        1: $('#1').is(":checked"),
-        2: $('#2').is(":checked"),
-        3: $('#3').is(":checked")
-    }
-    $.post('api/questionnaire', {questions: questions}, function(data){
+        q1: $('#1').is(":checked"),
+        q2: $('#2').is(":checked"),
+        q3: $('#3').is(":checked")
+    };
+
+    $.post('api/questionnaire', questions, function(data){
         displayAlert(data);
     });
 
     function displayAlert(data){
-        alert(JSON.stringify(data));
+        alert("Data gotten back " + JSON.stringify(data)+ "\nData sent " + JSON.stringify(questions));
     }
-
 });</script></body></head><script>var easter_egg = new Konami(function () {
     console.log("yo");
     var x;
