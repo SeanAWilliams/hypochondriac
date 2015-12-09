@@ -5,8 +5,8 @@
 var express = require('express');
 var router = express.Router();
 var model = require('../model/disease.js');
-var bodyParser = require('body-parser');
 
+var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 
 
@@ -32,17 +32,19 @@ router.get('/diagnosis', function (req, res) {
     res.send(disease);
 });
 
-router.post('/questionnaire', function (req, res) {
+router.post('/questionnaire', jsonParser, function (req, res) {
 
     var disease = new model.diseaseSchema();
     disease.name = "death";
     disease.timeToLive = "none";
+    disease.integer = 1234567890;
+    disease.boolean = true;
 
     var questions = req.body;
-    console.log("are are posting shit, here is the questions: " + JSON.stringify(questions));
+    console.log("are are posting shit, here is the  JSON.stringified questions: " + JSON.stringify(questions));
     console.log(req.body);
-    console.log(questions.q1);
-    if (questions.q1 == "true")
+    console.log("questions 1 is: "+ questions.q1);
+    if (questions.q1)
         res.send(disease);
     else
         res.send(questions);

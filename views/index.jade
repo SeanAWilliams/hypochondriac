@@ -11,17 +11,18 @@ mixin questionCheckbox(name, value, id)
     br
 
 mixin submit(name, id)
-    button(name=name, value=value, Id=id)
-        | #{name}
+    input(type="submit",name=name, value=value, Id=id)
 
 block content
     h1= title
-    p Welcome to #{title}
     br
+    h1
+        | CHECK THE BOXES THAT APPLY TO YOU!!!
+    hr
     p
-        mixin questionCheckbox("question 1 ", null, 1)
-        mixin questionCheckbox("question 2 ", null, 2)
-        mixin questionCheckbox("question 3 ", null, 3)
+        mixin questionCheckbox("I have a headache ", null, 1)
+        mixin questionCheckbox("I don't like puppies ", null, 2)
+        mixin questionCheckbox("I dont know what is going on ", null, 3)
         mixin submit("Submit", "submit")
 
     //TODO break this out to a standalone JS script
@@ -34,27 +35,22 @@ block content
                 q3: $('#3').is(":checked")
             };
             console.log(questions);
-            /*
+
+
             $.ajax({
                 url: "api/questionnaire",
-                type: 'post',
-                dataType: 'json',
-                data: questions,
-                contentType: 'application/json',
+                type: "post",
+                dataType: "json",
+                data: JSON.stringify(questions),
+                contentType: "application/json",
                 success: function (data) {
-                    alert("success");
-                    alert(data);
+                    displayAlert(data);
                 }
             });
-            */
-
-
-            $.post('api/questionnaire', questions, function(data){
-                displayAlert(data);
-            }, "json");
 
 
             function displayAlert(data){
+                console.log(data);
                 alert("Data gotten back " + JSON.stringify(data)+ "\nData sent " + JSON.stringify(questions));
             }
         });

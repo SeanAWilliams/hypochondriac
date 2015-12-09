@@ -5,7 +5,9 @@ module.exports = {
     diseaseSchema: function(){
         return{
             name:'',
-            timeToLive: ''
+            timeToLive: '',
+            integer: null,
+            boolean: false
         }
     }
 };
