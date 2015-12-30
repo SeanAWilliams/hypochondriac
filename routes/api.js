@@ -4,7 +4,8 @@
 
 var express = require('express');
 var router = express.Router();
-var model = require('../model/disease.js');
+var model = require('../model/disease');
+var surveyModel = require('../model/survey');
 
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
@@ -41,10 +42,15 @@ router.post('/questionnaire', jsonParser, function (req, res) {
     disease.boolean = true;
 
     var questions = req.body;
+    var survey = new surveyModel(questions);
+
     console.log("are are posting shit, here is the  JSON.stringified questions: " + JSON.stringify(questions));
     console.log(req.body);
     console.log("questions 1 is: "+ questions.q1);
-    if (questions.q1)
+
+    var disease = survey.toDisease();
+    console.log(survey.questions);
+    if (questions.rectalBleeding) // questions.rectalBleeding
         res.send(disease);
     else
         res.send(questions);

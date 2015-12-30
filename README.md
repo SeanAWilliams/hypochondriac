@@ -75,3 +75,6 @@ Pull stuff from the CDC API: https://tools.cdc.gov/syndication/api.aspx
 when TH user first accesses the site, they are greeted with a question, followed by N (probably 2) more questions after they answer.
 
 
+## What to work on next . TODO
+dynamic questions pulled from backend then presented to the user. 
+

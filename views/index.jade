@@ -20,7 +20,7 @@ block content
         | CHECK THE BOXES THAT APPLY TO YOU!!!
     hr
     p
-        mixin questionCheckbox("I have a headache ", null, 1)
+        mixin questionCheckbox("I have a rectal bleeding ", null, "rectalBleeding")
         mixin questionCheckbox("I don't like puppies ", null, 2)
         mixin questionCheckbox("I dont know what is going on ", null, 3)
         mixin submit("Submit", "submit")
@@ -30,7 +30,7 @@ block content
         $('#submit').click(function() {
 
             var questions = {
-                q1: $('#1').is(":checked"),
+                rectalBleeding: $('#rectalBleeding').is(":checked"),
                 q2: $('#2').is(":checked"),
                 q3: $('#3').is(":checked")
             };
